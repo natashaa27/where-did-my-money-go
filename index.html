@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mosaic — Your money, pieced together</title>
+  <meta name="description" content="Mosaic is a financial intelligence agent. Connect every account, then just ask: where did my money go?" />
+  <meta name="theme-color" content="#0b0b0d" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a href="#top" class="logo" aria-label="Mosaic home">
+        <span class="logo__mark" aria-hidden="true">
+          <i></i><i></i><i></i><i></i>
+        </span>
+        Mosaic
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#security">Security</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#waitlist" class="btn btn--light btn--sm">Join the waitlist</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero__tiles" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <span class="pill"><span class="pill__dot"></span> Your financial intelligence agent</span>
+          <h1 class="hero__title">
+            Where did my<br />money <em>go?</em>
+          </h1>
+          <p class="hero__sub">
+            Mosaic connects every bank account, card and UPI app you use, pieces your
+            transactions into one clear picture — and gives you an AI agent you can
+            simply <strong>ask</strong>.
+          </p>
+          <form class="waitlist-inline" data-waitlist>
+            <input type="email" required placeholder="you@email.com" aria-label="Email address" />
+            <button class="btn btn--accent" type="submit">Get early access</button>
+          </form>
+          <p class="hero__note">Free during beta · Read-only access · No passwords stored</p>
+        </div>
+
+        <!-- Phone mockup with live chat demo -->
+        <div class="phone" aria-label="Mosaic app preview">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <div class="app-top">
+              <div class="app-top__title">
+                <span class="logo__mark logo__mark--sm" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                Mosaic
+              </div>
+              <span class="app-top__badge">6 accounts synced</span>
+            </div>
+            <div class="chat" id="heroChat" aria-live="polite"></div>
+            <div class="chat-input">
+              <span id="heroTyping">Ask anything about your money…</span>
+              <span class="chat-input__send">↑</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BANK MARQUEE ============ -->
+    <section class="marquee" aria-label="Supported institutions">
+      <p class="marquee__label">Works with 100+ banks, cards and UPI apps via RBI's Account Aggregator network</p>
+      <div class="marquee__track">
+        <div class="marquee__row">
+          <span>HDFC Bank</span><span>ICICI Bank</span><span>SBI</span><span>Axis Bank</span><span>Kotak</span>
+          <span>IDFC FIRST</span><span>Yes Bank</span><span>IndusInd</span><span>AU Small Finance</span><span>Federal Bank</span>
+          <span>Google Pay</span><span>PhonePe</span><span>Paytm</span><span>Zerodha</span><span>Groww</span>
+        </div>
+        <div class="marquee__row" aria-hidden="true">
+          <span>HDFC Bank</span><span>ICICI Bank</span><span>SBI</span><span>Axis Bank</span><span>Kotak</span>
+          <span>IDFC FIRST</span><span>Yes Bank</span><span>IndusInd</span><span>AU Small Finance</span><span>Federal Bank</span>
+          <span>Google Pay</span><span>PhonePe</span><span>Paytm</span><span>Zerodha</span><span>Groww</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATEMENT ============ -->
+    <section class="statement container">
+      <p class="reveal">
+        Your money is scattered across <span class="hl hl--coral">5 banks</span>,
+        <span class="hl hl--violet">3 cards</span> and <span class="hl hl--sky">2 UPI apps</span>.
+        Each one tells you a fragment. <em>Mosaic shows you the whole picture.</em>
+      </p>
+    </section>
+
+    <!-- ============ FEATURES (bento) ============ -->
+    <section class="features container" id="features">
+      <div class="section-head reveal">
+        <span class="eyebrow">What Mosaic does</span>
+        <h2>Every piece of your money.<br /><em>One intelligent picture.</em></h2>
+      </div>
+
+      <div class="bento">
+        <!-- Ask -->
+        <article class="card card--lg card--ask reveal">
+          <div class="card__text">
+            <span class="tag tag--lime">Ask</span>
+            <h3>Just ask. Mosaic answers with your real numbers.</h3>
+            <p>No dashboards to decode. Ask in plain English — or Hinglish — and get answers grounded in every transaction you've ever made.</p>
+          </div>
+          <ul class="prompts">
+            <li>“How much did I spend on Swiggy last month?”</li>
+            <li>“Can I afford a ₹40k trip in December?”</li>
+            <li>“Which subscriptions am I not using?”</li>
+            <li>“Why is my balance lower than usual?”</li>
+          </ul>
+        </article>
+
+        <!-- Unified view -->
+        <article class="card card--unify reveal">
+          <span class="tag tag--sky">Unify</span>
+          <h3>All accounts, one balance</h3>
+          <p>Savings, credit cards, wallets and investments — live, in one place.</p>
+          <div class="balance">
+            <span class="balance__label">Net worth</span>
+            <span class="balance__value" data-count="482360">₹0</span>
+            <div class="balance__bar">
+              <i style="--w:46%;--c:var(--sky)"></i>
+              <i style="--w:24%;--c:var(--violet)"></i>
+              <i style="--w:18%;--c:var(--lime)"></i>
+              <i style="--w:12%;--c:var(--coral)"></i>
+            </div>
+          </div>
+        </article>
+
+        <!-- Categorize -->
+        <article class="card card--cat reveal">
+          <span class="tag tag--coral">Understand</span>
+          <h3>Auto-categorised, actually correct</h3>
+          <p>That cryptic “UPI/8812/RAZP*” becomes “Zomato · Food”. Mosaic learns your merchants.</p>
+          <div class="txn-list">
+            <div class="txn"><span class="txn__icon" style="--c:var(--coral)">🍜</span><span class="txn__name">Zomato<small>Food & dining</small></span><span class="txn__amt">−₹486</span></div>
+            <div class="txn"><span class="txn__icon" style="--c:var(--sky)">🚕</span><span class="txn__name">Uber<small>Transport</small></span><span class="txn__amt">−₹212</span></div>
+            <div class="txn"><span class="txn__icon" style="--c:var(--lime)">💼</span><span class="txn__name">Salary<small>Income</small></span><span class="txn__amt txn__amt--in">+₹1,20,000</span></div>
+          </div>
+        </article>
+
+        <!-- Mosaic breakdown -->
+        <article class="card card--lg card--mosaic reveal">
+          <div class="card__text">
+            <span class="tag tag--violet">See</span>
+            <h3>Your month, as a mosaic</h3>
+            <p>Every tile is a category, sized by what you spent. Tap one and ask Mosaic why it grew.</p>
+          </div>
+          <div class="mosaic-grid" aria-label="Spending by category for September">
+            <div class="tile" style="--c:var(--coral);grid-area:a"><b>Rent</b><span>₹28,000</span></div>
+            <div class="tile" style="--c:var(--violet);grid-area:b"><b>Food</b><span>₹11,240</span></div>
+            <div class="tile" style="--c:var(--sky);grid-area:c"><b>Shopping</b><span>₹8,960</span></div>
+            <div class="tile" style="--c:var(--lime);grid-area:d"><b>Travel</b><span>₹5,410</span></div>
+            <div class="tile" style="--c:var(--amber);grid-area:e"><b>Bills</b><span>₹3,880</span></div>
+            <div class="tile" style="--c:var(--pink);grid-area:f"><b>Subs</b><span>₹1,947</span></div>
+          </div>
+        </article>
+
+        <!-- Subscriptions -->
+        <article class="card reveal">
+          <span class="tag tag--amber">Catch</span>
+          <h3>Subscriptions & sneaky charges</h3>
+          <p>Mosaic flags recurring payments, price hikes and duplicate charges before they add up.</p>
+          <div class="alert">
+            <span class="alert__dot"></span>
+            <div><b>Netflix went up ₹150</b><small>You've watched twice in 60 days. Cancel?</small></div>
+          </div>
+        </article>
+
+        <!-- Plan -->
+        <article class="card reveal">
+          <span class="tag tag--pink">Plan</span>
+          <h3>Budgets that adjust themselves</h3>
+          <p>Set a goal once. Mosaic paces your spending and nudges you mid-month, not after.</p>
+          <div class="meter">
+            <div class="meter__row"><span>Food</span><span>₹11,240 / ₹12,000</span></div>
+            <div class="meter__bar"><i style="--w:94%;--c:var(--coral)"></i></div>
+            <div class="meter__row"><span>Shopping</span><span>₹8,960 / ₹15,000</span></div>
+            <div class="meter__bar"><i style="--w:60%;--c:var(--lime)"></i></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ AGENT DEMO ============ -->
+    <section class="agent" id="agent">
+      <div class="container agent__inner">
+        <div class="section-head reveal">
+          <span class="eyebrow">Meet the agent</span>
+          <h2>Not a chatbot.<br /><em>A money analyst on call.</em></h2>
+          <p class="section-sub">Mosaic reasons over your full transaction history, spots patterns you'd miss, and shows its working. Try a question.</p>
+        </div>
+
+        <div class="demo reveal">
+          <div class="demo__chips" role="tablist" aria-label="Example questions">
+            <button class="chip is-active" data-q="0">Where did my money go?</button>
+            <button class="chip" data-q="1">Can I afford a trip?</button>
+            <button class="chip" data-q="2">Find wasted spend</button>
+            <button class="chip" data-q="3">Am I saving enough?</button>
+          </div>
+          <div class="demo__window">
+            <div class="demo__bar"><i></i><i></i><i></i><span>mosaic · agent</span></div>
+            <div class="demo__body" id="demoBody" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="how container" id="how">
+      <div class="section-head reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>Set up in two minutes.<br /><em>Smarter every day.</em></h2>
+      </div>
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step__num">01</span>
+          <h3>Connect securely</h3>
+          <p>Link your accounts through RBI-regulated Account Aggregators. Consent-based, read-only, revocable anytime.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">02</span>
+          <h3>Mosaic pieces it together</h3>
+          <p>Transactions are cleaned, de-duplicated across accounts and categorised into a single timeline.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">03</span>
+          <h3>Ask, plan, act</h3>
+          <p>Chat with your agent, get weekly insights, and let Mosaic watch for anything unusual.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ SECURITY ============ -->
+    <section class="security" id="security">
+      <div class="container security__inner">
+        <div class="section-head reveal">
+          <span class="eyebrow">Security & privacy</span>
+          <h2>Your data works for you.<br /><em>Never against you.</em></h2>
+        </div>
+        <div class="sec-grid">
+          <div class="sec reveal"><span class="sec__icon">🔒</span><h3>Read-only access</h3><p>Mosaic can see your transactions. It can never move your money.</p></div>
+          <div class="sec reveal"><span class="sec__icon">🏛️</span><h3>RBI Account Aggregator</h3><p>Data flows through regulated, consent-driven rails — not screen scraping.</p></div>
+          <div class="sec reveal"><span class="sec__icon">🛡️</span><h3>Encrypted end to end</h3><p>AES-256 at rest, TLS in transit. Your bank credentials are never stored.</p></div>
+          <div class="sec reveal"><span class="sec__icon">🚫</span><h3>We don't sell data</h3><p>No ads, no lending pitches, no selling your profile. You're the customer.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="faq container" id="faq">
+      <div class="section-head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions, <em>answered.</em></h2>
+      </div>
+      <div class="faq__list">
+        <details class="reveal">
+          <summary>What is Mosaic?</summary>
+          <p>Mosaic is a financial intelligence agent. It brings all your bank accounts, cards and UPI apps into one place and lets you ask questions about your money in plain language — like talking to a personal analyst who has read every statement you've ever had.</p>
+        </details>
+        <details class="reveal">
+          <summary>Can Mosaic move my money?</summary>
+          <p>No. Mosaic only has read-only access to your financial data. It can analyse, explain and alert — it cannot make payments or transfers.</p>
+        </details>
+        <details class="reveal">
+          <summary>How does Mosaic connect to my bank?</summary>
+          <p>Through RBI's Account Aggregator framework. You give explicit, time-bound consent for each account, and you can revoke it at any time from the app.</p>
+        </details>
+        <details class="reveal">
+          <summary>Is the AI giving me financial advice?</summary>
+          <p>Mosaic gives you insights based on your own data — spending patterns, affordability checks, savings pace. It isn't a registered investment advisor and won't recommend specific securities.</p>
+        </details>
+        <details class="reveal">
+          <summary>How much does it cost?</summary>
+          <p>Mosaic is free during the beta. Early waitlist members will get founding-member pricing when paid plans launch.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta" id="waitlist">
+      <div class="cta__tiles" aria-hidden="true"></div>
+      <div class="container cta__inner reveal">
+        <h2>Stop guessing.<br /><em>Start asking.</em></h2>
+        <p>Join the waitlist and be first to meet your money agent.</p>
+        <form class="waitlist-inline waitlist-inline--center" data-waitlist>
+          <input type="email" required placeholder="you@email.com" aria-label="Email address" />
+          <button class="btn btn--accent" type="submit">Join the waitlist</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <a href="#top" class="logo"><span class="logo__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Mosaic</a>
+        <p class="footer__tag">Your money, pieced together.</p>
+      </div>
+      <div class="footer__cols">
+        <div><h4>Product</h4><a href="#features">Features</a><a href="#agent">Agent</a><a href="#security">Security</a></div>
+        <div><h4>Company</h4><a href="#">About</a><a href="#">Careers</a><a href="#">Contact</a></div>
+        <div><h4>Legal</h4><a href="#">Privacy</a><a href="#">Terms</a></div>
+      </div>
+    </div>
+    <div class="container footer__base">
+      <span>© <span id="year"></span> Mosaic. All rights reserved.</span>
+      <span>Insights, not investment advice.</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
