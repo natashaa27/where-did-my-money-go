@@ -29,3 +29,10 @@ assets/           favicon
 - **Agent demo:** `heroScript` and `demos` in `app.js` hold scripted conversations. Swap them for calls to the real agent API when it exists.
 - **Waitlist:** the form only saves to `localStorage` right now. Look for the `TODO` in `app.js` and point it at a real backend.
 - **Copy & numbers:** every figure on the page is illustrative sample data.
+
+## Deploy
+
+`.github/workflows/pages.yml` publishes the site to GitHub Pages on every push to `main` or `claude/nifty-cannon-62ohkg`.
+One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+Live at: https://natashaa27.github.io/where-did-my-money-go/
