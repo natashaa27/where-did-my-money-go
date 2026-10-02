@@ -259,8 +259,18 @@
   demoIO.observe(demoBody);
 
   /* ---------- Waitlist ---------- */
-  // Paste your Google Apps Script web app URL here (see backend/README.md).
-  const WAITLIST_ENDPOINT = "";
+  // Where signups are sent. Two backends are supported:
+  //  - FormSubmit (current): https://formsubmit.co/ajax/<your email or FormSubmit alias>
+  //    After activating, swap the email for the random alias FormSubmit emails you, so your address isn't public.
+  //  - Google Apps Script: your web app URL ending in /exec (see backend/README.md).
+  const WAITLIST_ENDPOINT = "https://formsubmit.co/ajax/natashamohanty27@gmail.com";
+
+  const AUTORESPONSE =
+    "Thanks for joining the Mosaic waitlist! ✦\n\n" +
+    "Mosaic connects all your bank accounts, cards and UPI apps and gives you an AI agent " +
+    "you can ask anything about your money — starting with \"where did my money go?\"\n\n" +
+    "We'll email you as soon as your early access is ready. Waitlist members get founding-member pricing.\n\n" +
+    "— Team Mosaic";
 
   const toast = $("#toast");
   const showToast = (msg, isError = false) => {
@@ -273,6 +283,36 @@
 
   async function joinWaitlist(email, company, source) {
     if (!WAITLIST_ENDPOINT) throw new Error("The waitlist isn't connected yet. Please try again later.");
+    if (company) return { ok: true }; // honeypot filled: almost certainly a bot, drop it quietly
+    return WAITLIST_ENDPOINT.includes("formsubmit.co")
+      ? joinViaFormSubmit(email, source)
+      : joinViaAppsScript(email, company, source);
+  }
+
+  // Emails the owner each signup and sends the subscriber an automatic confirmation.
+  async function joinViaFormSubmit(email, source) {
+    const res = await fetch(WAITLIST_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        email,
+        source,
+        _subject: "New Mosaic waitlist signup: " + email,
+        _template: "table",
+        _captcha: "false",
+        _autoresponse: AUTORESPONSE,
+      }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (String(data.success) === "true") return { ok: true };
+    if (/activat/i.test(data.message || "")) {
+      // The form owner hasn't clicked FormSubmit's one-time activation link yet.
+      throw new Error("We're just finishing setting up the waitlist. Please try again in a few minutes.");
+    }
+    throw new Error("Something went wrong. Please try again.");
+  }
+
+  async function joinViaAppsScript(email, company, source) {
     // text/plain keeps this a "simple" request, so Apps Script doesn't need a CORS preflight.
     const res = await fetch(WAITLIST_ENDPOINT, {
       method: "POST",

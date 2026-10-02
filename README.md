@@ -28,7 +28,7 @@ backend/          waitlist backend (Google Apps Script) + setup guide
 
 - **Brand tokens:** colours and fonts live in `:root` at the top of `styles.css`.
 - **Agent demo:** `heroScript` and `demos` in `app.js` hold scripted conversations. Swap them for calls to the real agent API when it exists.
-- **Waitlist:** signups go to a Google Apps Script backend that saves them to a Google Sheet and sends a confirmation email. Setup steps: [`backend/README.md`](backend/README.md).
+- **Waitlist:** signups are sent through [FormSubmit](https://formsubmit.co): you get an email for each signup and the subscriber gets an automatic confirmation. One-time step: click the *Activate Form* link FormSubmit emails you after the first signup, then replace your email in `WAITLIST_ENDPOINT` (`app.js`) with the random alias they send, so your address isn't public. A Google Apps Script backend (saves to a Sheet, branded email) is also supported: see [`backend/README.md`](backend/README.md).
 - **Copy & numbers:** every figure on the page is illustrative sample data.
 
 ## Deploy
