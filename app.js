@@ -259,28 +259,53 @@
   demoIO.observe(demoBody);
 
   /* ---------- Waitlist ---------- */
-  // TODO: replace with a real endpoint (e.g. Supabase, Formspree, or your own API).
+  // Paste your Google Apps Script web app URL here (see backend/README.md).
+  const WAITLIST_ENDPOINT = "";
+
   const toast = $("#toast");
-  const showToast = (msg) => {
+  const showToast = (msg, isError = false) => {
     toast.textContent = msg;
+    toast.classList.toggle("toast--error", isError);
     toast.classList.add("is-on");
     clearTimeout(showToast._t);
-    showToast._t = setTimeout(() => toast.classList.remove("is-on"), 3200);
+    showToast._t = setTimeout(() => toast.classList.remove("is-on"), 4000);
   };
 
+  async function joinWaitlist(email, company, source) {
+    if (!WAITLIST_ENDPOINT) throw new Error("The waitlist isn't connected yet. Please try again later.");
+    // text/plain keeps this a "simple" request, so Apps Script doesn't need a CORS preflight.
+    const res = await fetch(WAITLIST_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ email, company, source }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.ok) throw new Error(data.error || "Something went wrong. Please try again.");
+    return data;
+  }
+
   $$("[data-waitlist]").forEach((form) =>
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const email = form.querySelector("input").value.trim();
+      const input = form.querySelector('input[type="email"]');
+      const button = form.querySelector('button[type="submit"]');
+      const label = button.textContent;
+      button.disabled = true;
+      button.textContent = "Joining…";
       try {
-        const list = JSON.parse(localStorage.getItem("mosaic-waitlist") || "[]");
-        if (!list.includes(email)) list.push(email);
-        localStorage.setItem("mosaic-waitlist", JSON.stringify(list));
-      } catch (_) {
-        /* storage unavailable — fine for a demo */
+        const data = await joinWaitlist(
+          input.value.trim(),
+          form.querySelector('[name="company"]').value,
+          form.dataset.waitlist || "site"
+        );
+        form.reset();
+        showToast(data.duplicate ? "You're already on the list ✦" : "You're on the list ✦ Check your inbox.");
+      } catch (err) {
+        showToast(err.message, true);
+      } finally {
+        button.disabled = false;
+        button.textContent = label;
       }
-      form.reset();
-      showToast("You're on the list ✦ We'll be in touch soon.");
     })
   );
 })();

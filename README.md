@@ -21,13 +21,14 @@ index.html        page markup (hero, features bento, agent demo, how it works, s
 styles.css        design tokens (:root) + all styles
 app.js            animations, scripted chat demos, waitlist form
 assets/           favicon
+backend/          waitlist backend (Google Apps Script) + setup guide
 ```
 
 ## Building on it
 
 - **Brand tokens:** colours and fonts live in `:root` at the top of `styles.css`.
 - **Agent demo:** `heroScript` and `demos` in `app.js` hold scripted conversations. Swap them for calls to the real agent API when it exists.
-- **Waitlist:** the form only saves to `localStorage` right now. Look for the `TODO` in `app.js` and point it at a real backend.
+- **Waitlist:** signups go to a Google Apps Script backend that saves them to a Google Sheet and sends a confirmation email. Setup steps: [`backend/README.md`](backend/README.md).
 - **Copy & numbers:** every figure on the page is illustrative sample data.
 
 ## Deploy

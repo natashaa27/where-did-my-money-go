@@ -180,6 +180,8 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spa
 .waitlist-inline input::placeholder { color: var(--dim); }
 .waitlist-inline:focus-within { border-color: var(--lime); }
 .waitlist-inline--center { margin-inline: auto; }
+.waitlist-inline .btn:disabled { opacity: 0.7; cursor: progress; transform: none; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
 /* ---------- Phone mockup ---------- */
 .phone {
@@ -468,6 +470,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spa
   max-width: calc(100% - 32px);
 }
 .toast.is-on { opacity: 1; translate: -50% 0; }
+.toast--error { background: var(--coral); color: #0b0b0d; }
 
 /* ---------- Reveal on scroll ---------- */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
