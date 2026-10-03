@@ -260,10 +260,10 @@
 
   /* ---------- Waitlist ---------- */
   // Where signups are sent. Two backends are supported:
-  //  - FormSubmit (current): https://formsubmit.co/ajax/<your email or FormSubmit alias>
+  //  - FormSubmit (current): https://formsubmit.co/<your email or FormSubmit alias>
   //    After activating, swap the email for the random alias FormSubmit emails you, so your address isn't public.
   //  - Google Apps Script: your web app URL ending in /exec (see backend/README.md).
-  const WAITLIST_ENDPOINT = "https://formsubmit.co/ajax/natashamohanty27@gmail.com";
+  const WAITLIST_ENDPOINT = "https://formsubmit.co/natashamohanty27@gmail.com";
 
   const AUTORESPONSE =
     "Thanks for joining the Mosaic waitlist! ✦\n\n" +
@@ -290,26 +290,35 @@
   }
 
   // Emails the owner each signup and sends the subscriber an automatic confirmation.
-  async function joinViaFormSubmit(email, source) {
-    const res = await fetch(WAITLIST_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({
-        email,
-        source,
-        _subject: "New Mosaic waitlist signup: " + email,
-        _template: "table",
-        _captcha: "false",
-        _autoresponse: AUTORESPONSE,
-      }),
-    });
-    const data = await res.json().catch(() => ({}));
-    if (String(data.success) === "true") return { ok: true };
-    if (/activat/i.test(data.message || "")) {
-      // The form owner hasn't clicked FormSubmit's one-time activation link yet.
-      throw new Error("We're just finishing setting up the waitlist. Please try again in a few minutes.");
+  // FormSubmit only sends the confirmation (_autoresponse) for regular, non-AJAX submissions
+  // with its captcha left on, so we post a normal form: the visitor ticks FormSubmit's
+  // "I'm not a robot" page, then lands back here with ?joined=1.
+  function joinViaFormSubmit(email, source) {
+    const back = new URL(location.href);
+    back.search = "?joined=1";
+    back.hash = "waitlist";
+    const fields = {
+      email,
+      source,
+      _subject: "New Mosaic waitlist signup: " + email,
+      _template: "table",
+      _autoresponse: AUTORESPONSE,
+      _next: back.href,
+    };
+    const f = document.createElement("form");
+    f.method = "POST";
+    f.action = WAITLIST_ENDPOINT;
+    f.hidden = true;
+    for (const [name, value] of Object.entries(fields)) {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = name;
+      input.value = value;
+      f.appendChild(input);
     }
-    throw new Error("Something went wrong. Please try again.");
+    document.body.appendChild(f);
+    f.submit();
+    return { redirecting: true };
   }
 
   async function joinViaAppsScript(email, company, source) {
@@ -322,6 +331,21 @@
     const data = await res.json().catch(() => ({}));
     if (!res.ok || !data.ok) throw new Error(data.error || "Something went wrong. Please try again.");
     return data;
+  }
+
+  // If the visitor comes back with the browser's Back button, re-enable the buttons.
+  window.addEventListener("pageshow", () =>
+    $$("[data-waitlist] button[data-leaving]").forEach((b) => {
+      b.textContent = b.dataset.leaving;
+      b.disabled = false;
+      delete b.dataset.leaving;
+    })
+  );
+
+  // Back from FormSubmit's confirmation page.
+  if (new URLSearchParams(location.search).get("joined") === "1") {
+    showToast("You're on the list ✦ Check your inbox.");
+    history.replaceState(null, "", location.pathname + location.hash);
   }
 
   $$("[data-waitlist]").forEach((form) =>
@@ -338,13 +362,19 @@
           form.querySelector('[name="company"]').value,
           form.dataset.waitlist || "site"
         );
+        if (data.redirecting) {
+          button.dataset.leaving = label;
+          return;
+        }
         form.reset();
         showToast(data.duplicate ? "You're already on the list ✦" : "You're on the list ✦ Check your inbox.");
       } catch (err) {
         showToast(err.message, true);
       } finally {
-        button.disabled = false;
-        button.textContent = label;
+        if (!button.dataset.leaving) {
+          button.disabled = false;
+          button.textContent = label;
+        }
       }
     })
   );
