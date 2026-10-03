@@ -197,10 +197,10 @@ svg { display: block; }
   width: 44px;
   height: 44px;
   border-radius: 14px;
-  background: var(--bg);
+  background: var(--h-navy);
   display: grid;
   place-items: center;
-  box-shadow: 0 8px 20px -8px rgba(11, 11, 13, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  box-shadow: 0 8px 20px -8px rgba(15, 42, 102, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
   transition: transform 0.2s var(--ease);
 }
 .mosaic-fab:hover { transform: translateY(-2px); }
@@ -210,10 +210,15 @@ svg { display: block; }
   position: absolute;
   inset: -4px;
   border-radius: 18px;
-  border: 2px solid var(--lime);
+  border: 2px solid var(--h-navy);
   opacity: 0;
   animation: ring 2.6s var(--ease) infinite;
 }
+/* Blue-and-white version of the logo, to match the host app */
+.mosaic-fab .logo-mark i:nth-child(n) { background: #fff; }
+.mosaic-fab .logo-mark i:nth-child(2) { opacity: 0.7; }
+.mosaic-fab .logo-mark i:nth-child(3) { opacity: 0.5; }
+.mosaic-fab .logo-mark i:nth-child(4) { opacity: 0.85; }
 @keyframes ring {
   0% { opacity: 0.7; transform: scale(0.92); }
   70%, 100% { opacity: 0; transform: scale(1.18); }
