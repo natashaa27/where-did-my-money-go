@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Mosaic Wireframes — Home → Chat</title>
+  <meta name="description" content="Wireframe flow: the money app home screen with the Mosaic entry point, opening the Mosaic chat." />
+  <meta name="theme-color" content="#e9ebf2" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="wireframes.css" />
+</head>
+<body>
+  <div class="stage">
+    <!-- Flow notes (hidden on phones, where the prototype goes full screen) -->
+    <aside class="notes">
+      <span class="notes__eyebrow">Wireframe · Flow 01</span>
+      <h1>Home <span>→</span> Mosaic chat</h1>
+      <ol class="flow" id="flowSteps">
+        <li class="is-current" data-step="home">
+          <b>Home</b>
+          <small>The user's existing money app. Mosaic lives in the bottom-left corner, above the tab bar.</small>
+        </li>
+        <li data-step="chat">
+          <b>Tap the Mosaic tile</b>
+          <small>The chat opens from the tile. Mosaic greets the user and suggests questions.</small>
+        </li>
+        <li data-step="answer">
+          <b>Ask anything</b>
+          <small>Tap a suggestion or type. Back arrow (or Esc) returns home.</small>
+        </li>
+      </ol>
+      <div class="notes__actions">
+        <button class="notes__btn" data-go="home">View home</button>
+        <button class="notes__btn" data-go="chat">View chat</button>
+      </div>
+    </aside>
+
+    <!-- ================= PHONE ================= -->
+    <div class="device">
+      <div class="device__screen">
+
+        <!-- ========== SCREEN 1: HOME ========== -->
+        <section class="home" id="home" aria-label="Home">
+          <nav class="tabs" aria-label="Sections">
+            <a class="tab is-active" href="#">Home</a>
+            <a class="tab tab--dot" href="#">Insurance</a>
+            <a class="tab" href="#">Family</a>
+            <a class="tab" href="#">Cards</a>
+          </nav>
+
+          <div class="home__scroll">
+            <header class="profile">
+              <div class="avatar" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="9" cy="10" r="1.3"/><circle cx="15" cy="10" r="1.3"/><path d="M8.5 14c1 1.6 2.2 2.3 3.5 2.3s2.5-.7 3.5-2.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </div>
+              <div class="profile__text">
+                <span class="profile__name">Natasha</span>
+                <a class="profile__updates" href="#">9+ unread updates <span aria-hidden="true">⟶</span></a>
+              </div>
+              <button class="icon-btn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 1 1 12 0v6l1.5 1.5h-15L6 17Z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>
+              </button>
+              <button class="icon-btn" aria-label="Notes">
+                <svg viewBox="0 0 24 24"><rect x="5" y="3" width="11" height="18" rx="2"/><path d="M8 7v9M16 7h3v12h-3"/></svg>
+              </button>
+            </header>
+
+            <div class="card card--row">
+              <span class="muted">Get Plus at ₹80</span>
+              <a class="link-strong" href="#">Upgrade</a>
+            </div>
+
+            <div class="card card--networth">
+              <div>
+                <h2>Net worth</h2>
+                <span class="faint">Tap to set up</span>
+              </div>
+              <svg class="spark" viewBox="0 0 120 60" aria-hidden="true">
+                <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3ccf6e" stop-opacity=".5"/><stop offset="1" stop-color="#3ccf6e" stop-opacity="0"/></linearGradient></defs>
+                <path d="M0 45 C15 45 18 28 32 30 S48 50 62 44 S74 10 88 8 S110 10 120 12 V60 H0Z" fill="url(#g)"/>
+                <path d="M0 45 C15 45 18 28 32 30 S48 50 62 44 S74 10 88 8 S110 10 120 12" fill="none" stroke="#2fbf5f" stroke-width="2.5"/>
+              </svg>
+            </div>
+
+            <div class="ad">
+              <div class="ad__inner">
+                <div class="ad__logo">Partner</div>
+                <p>Get unbiased insurance advice, free.</p>
+              </div>
+              <div class="ad__actions">
+                <button class="pill-btn pill-btn--soft">Hide this Ad</button>
+                <button class="pill-btn pill-btn--solid">Talk to an Advisor</button>
+              </div>
+            </div>
+
+            <div class="card card--bank">
+              <div class="bank">
+                <span class="bank__logo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg>
+                </span>
+                <div>
+                  <b>AXIS BANK</b>
+                  <span class="faint">****1147</span>
+                </div>
+              </div>
+              <div class="balance-row">
+                <span>Current balance</span>
+                <span class="faint">₹ ••••••</span>
+              </div>
+            </div>
+            <div class="spacer"></div>
+          </div>
+
+          <!-- Bottom strip: Mosaic entry point lives in the left corner -->
+          <div class="dock">
+            <button class="mosaic-fab" id="openMosaic" aria-label="Open Mosaic chat">
+              <span class="mosaic-fab__ring" aria-hidden="true"></span>
+              <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            </button>
+            <div class="dock__pill" aria-hidden="true">
+              <span class="hourglass">⌛</span>
+              <span class="dock__divider"></span>
+              <span class="dock__bank">
+                <svg viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg>
+              </span>
+            </div>
+            <span class="dock__hint" id="dockHint">Ask Mosaic</span>
+          </div>
+
+          <nav class="tabbar" aria-label="Main">
+            <a href="#" class="is-active" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M12 3c4 4.5 7 8 7 11.5A7 7 0 0 1 5 14.5C5 11 8 7.5 12 3Z"/></svg></a>
+            <a href="#" aria-label="Spends"><svg viewBox="0 0 24 24"><rect x="5" y="6" width="14" height="15" rx="3"/><path d="M8 3h8M9.5 10h5M9.5 13h5M12 13c-1.5 0-2.5 4-2.5 4M10 10c2.5 0 2.5 3 0 3"/></svg></a>
+            <a href="#" aria-label="Investments"><svg viewBox="0 0 24 24"><path d="M4 20V8l4 3 4-5 4 4 4-4v14Z"/><path d="M14 6h6v6"/></svg></a>
+            <a href="#" aria-label="Calendar"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/><circle cx="9" cy="14" r=".8"/><circle cx="12" cy="14" r=".8"/><circle cx="15" cy="14" r=".8"/><circle cx="9" cy="17" r=".8"/><circle cx="12" cy="17" r=".8"/></svg></a>
+          </nav>
+        </section>
+
+        <!-- ========== SCREEN 2: MOSAIC CHAT ========== -->
+        <section class="chat-screen" id="chat" aria-label="Mosaic chat" aria-hidden="true">
+          <header class="chat-top">
+            <button class="chat-top__back" id="closeMosaic" aria-label="Back to home">
+              <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <div class="chat-top__title">
+              <span class="logo-mark logo-mark--sm" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              Mosaic
+            </div>
+            <span class="chat-top__badge">6 accounts synced</span>
+          </header>
+
+          <div class="chat-body" id="chatBody" aria-live="polite">
+            <div class="welcome">
+              <span class="logo-mark logo-mark--lg" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <h2>Hi Natasha, <em>ask me anything.</em></h2>
+              <p>I can see your 6 accounts, cards and UPI apps. Try one of these:</p>
+            </div>
+          </div>
+
+          <div class="suggestions" id="suggestions">
+            <button class="chip">Where did my money go?</button>
+            <button class="chip">Can I afford a ₹40k trip?</button>
+            <button class="chip">Find wasted spend</button>
+            <button class="chip">Am I saving enough?</button>
+          </div>
+
+          <form class="composer" id="composer" autocomplete="off">
+            <input id="composerInput" type="text" placeholder="Ask anything about your money…" aria-label="Message Mosaic" />
+            <button type="submit" aria-label="Send">↑</button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="wireframes.js"></script>
+</body>
+</html>
