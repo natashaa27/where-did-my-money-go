@@ -6,7 +6,7 @@ Standalone click-through wireframes. Nothing here touches the landing page (`../
 
 `wireframes/index.html`
 
-1. **Home:** the existing money app's home screen. The Mosaic tile (four-colour logo) sits in the bottom-left corner, above the tab bar.
+1. **Home:** the existing money app's home screen. The Mosaic tile (four-colour logo) sits in the bottom-right corner, as the fifth icon in the tab bar.
 2. **Tap the Mosaic tile:** the Mosaic chat opens, growing out of the tile, with the same dark look as the landing page's phone.
 3. **Ask anything:** tap a suggestion or type a question. Replies are scripted placeholders. The back arrow, Esc or the browser Back button return home.
 
