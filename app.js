@@ -265,7 +265,8 @@
   //  - Google Apps Script: your web app URL ending in /exec (see backend/README.md).
   const WAITLIST_ENDPOINT = "https://formsubmit.co/natashamohanty27@gmail.com";
 
-  const AUTORESPONSE =
+  // Shown at the top of the confirmation email the subscriber receives.
+  const WELCOME_MESSAGE =
     "Thanks for joining the Mosaic waitlist! ✦\n\n" +
     "Mosaic connects all your bank accounts, cards and UPI apps and gives you an AI agent " +
     "you can ask anything about your money — starting with \"where did my money go?\"\n\n" +
@@ -285,24 +286,24 @@
     if (!WAITLIST_ENDPOINT) throw new Error("The waitlist isn't connected yet. Please try again later.");
     if (company) return { ok: true }; // honeypot filled: almost certainly a bot, drop it quietly
     return WAITLIST_ENDPOINT.includes("formsubmit.co")
-      ? joinViaFormSubmit(email, source)
+      ? joinViaFormSubmit(email)
       : joinViaAppsScript(email, company, source);
   }
 
-  // Emails the owner each signup and sends the subscriber an automatic confirmation.
-  // FormSubmit only sends the confirmation (_autoresponse) for regular, non-AJAX submissions
-  // with its captcha left on, so we post a normal form: the visitor ticks FormSubmit's
-  // "I'm not a robot" page, then lands back here with ?joined=1.
-  function joinViaFormSubmit(email, source) {
+  // FormSubmit emails the form owner each submission. FormSubmit's own _autoresponse never
+  // reached subscribers, so we CC the subscriber on that same email instead: both of you get
+  // one "You're on the Mosaic waitlist" email with the welcome message and their address.
+  // The visitor passes FormSubmit's "I'm not a robot" page, then lands back here with ?joined=1.
+  function joinViaFormSubmit(email) {
     const back = new URL(location.href);
     back.search = "?joined=1";
     back.hash = "waitlist";
     const fields = {
+      message: WELCOME_MESSAGE,
       email,
-      source,
-      _subject: "New Mosaic waitlist signup: " + email,
-      _template: "table",
-      _autoresponse: AUTORESPONSE,
+      _subject: "You're on the Mosaic waitlist ✦",
+      _template: "box",
+      _cc: email,
       _next: back.href,
     };
     const f = document.createElement("form");
