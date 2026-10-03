@@ -214,11 +214,16 @@ svg { display: block; }
   opacity: 0;
   animation: ring 2.6s var(--ease) infinite;
 }
-/* Blue-and-white version of the logo, to match the host app */
-.mosaic-fab .logo-mark i:nth-child(n) { background: #fff; }
-.mosaic-fab .logo-mark i:nth-child(2) { opacity: 0.7; }
-.mosaic-fab .logo-mark i:nth-child(3) { opacity: 0.5; }
-.mosaic-fab .logo-mark i:nth-child(4) { opacity: 0.85; }
+/* Blue-and-white version of the logo (tab bar tile + chat screen), to match the host app */
+.mosaic-fab .logo-mark i:nth-child(n),
+.chat-screen .logo-mark i:nth-child(n) { background: #fff; }
+.mosaic-fab .logo-mark i:nth-child(2), .chat-screen .logo-mark i:nth-child(2) { opacity: 0.7; }
+.mosaic-fab .logo-mark i:nth-child(3), .chat-screen .logo-mark i:nth-child(3) { opacity: 0.5; }
+.mosaic-fab .logo-mark i:nth-child(4), .chat-screen .logo-mark i:nth-child(4) { opacity: 0.85; }
+/* On the dark chat screen the white squares sit on a navy tile, like the tab bar icon */
+.chat-screen .logo-mark { background: var(--h-navy); }
+.chat-screen .logo-mark--sm { width: 26px; height: 26px; padding: 5px; border-radius: 8px; }
+.chat-screen .logo-mark--lg { width: 60px; height: 60px; padding: 11px; gap: 5px; border-radius: 18px; }
 @keyframes ring {
   0% { opacity: 0.7; transform: scale(0.92); }
   70%, 100% { opacity: 0; transform: scale(1.18); }
