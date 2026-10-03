@@ -92,18 +92,8 @@
   const rows = (items) =>
     '<div class="rows">' + items.map(([l, r, cls = ""]) => `<div><span>${l}</span><span class="${cls}">${r}</span></div>`).join("") + "</div>";
 
+  // Checked in order: specific questions first, the general "where did it go" last.
   const replies = [
-    {
-      match: /where|go|spend|spent|month/i,
-      html:
-        "You spent <b>₹59,437</b> in September, <b>18% more</b> than August. Mostly food delivery and one Amazon order." +
-        bars([
-          ["Rent", "₹28,000", 100, "--coral"],
-          ["Food", "₹11,240", 40, "--violet"],
-          ["Shopping", "₹8,960", 32, "--sky"],
-          ["Travel", "₹5,410", 19, "--lime"],
-        ]),
-    },
     {
       match: /afford|trip|travel|goa|buy/i,
       html:
@@ -125,6 +115,17 @@
           ["Goal", "25%", 100, "--lime"],
         ]) +
         rows([["Auto-sweep ₹5k on payday", "+4.2%", "down"]]),
+    },
+    {
+      match: /where|go|spend|spent|month/i,
+      html:
+        "You spent <b>₹59,437</b> in September, <b>18% more</b> than August. Mostly food delivery and one Amazon order." +
+        bars([
+          ["Rent", "₹28,000", 100, "--coral"],
+          ["Food", "₹11,240", 40, "--violet"],
+          ["Shopping", "₹8,960", 32, "--sky"],
+          ["Travel", "₹5,410", 19, "--lime"],
+        ]),
     },
   ];
   const fallback =
